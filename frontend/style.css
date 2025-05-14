@@ -1,0 +1,95 @@
+body {
+    font-family: sans-serif;
+    background-color: #141E30;
+    color: #B8B8B8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .container {
+    text-align: center;
+    padding: 40px;
+    border-radius: 12px;
+    background-color: rgba(20, 30, 48, 0.9);
+    z-index: 1;
+    box-shadow: 0 0 20px rgba(46, 134, 193, 0.5);
+    width: 90%;
+    max-width: 400px;
+  }
+  
+  h1 {
+    color: #2E86C1;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    color: #a1a1a1;
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    color: #29fff4;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+  }
+  
+  h5 {
+    color: #ff951d;
+    font-size: 0.8em;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  button {
+    padding: 12px 24px;
+    background-color: #2E86C1;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: 0.3s;
+  }
+  
+  button:hover {
+    background-color: #1B4F72;
+  }
+  
+  #message {
+    margin-top: 10px;
+    color: #A9DFBF;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 3s linear infinite, fadeInOut 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); }
+    100% { transform: translateY(-100px) translateX(50px) rotate(360deg); }
+  }
+  
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0; }
+  }
+  
