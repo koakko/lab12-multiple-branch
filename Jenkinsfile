@@ -10,6 +10,7 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == 'dev') {
                         node('dev') {
+                            cleanWs()
                             ws('${wkd}') {
                                 checkout GitSCM
                                 docker login -u $DH_USR -p $DH_PSW
@@ -23,11 +24,11 @@ pipeline {
                                 docker rmi -f bimg || true
                                 docker-compose up --no-cache --build webapp
                                 docker logout
-                                cleanWs()
                             }
                         }
                     } else if (env.BRANCH_NAME == 'staging') {
                         node('staging') {
+                            cleanWs()
                             ws('${wkd}') {
                                 checkout GitSCM
                                 docker login -u $DH_USR -p $DH_PSW
@@ -41,11 +42,11 @@ pipeline {
                                 docker rmi -f bimg || true
                                 docker-compose up --no-cache --build webapp
                                 docker logout
-                                cleanWs()
                             }
                         }
                     } else if (env.BRANCH_NAME == 'ps') {
                         node('ps') {
+                            cleanWs()
                             ws('${wkd}') {
                                 checkout GitSCM
                                 docker login -u $DH_USR -p $DH_PSW
@@ -59,7 +60,6 @@ pipeline {
                                 docker rmi -f bimg || true
                                 docker-compose up --no-cache --build webapp
                                 docker logout
-                                cleanWs()
                             }
                         }
                     }
