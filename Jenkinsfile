@@ -31,7 +31,7 @@ pipeline {
         DH = credentials('dh-credentials')
     }
     stages {
-        stage('build and deploy') {
+        stage('build and de[loy') {
             steps {
                 script {
                 if (env.BRANCH_NAME == 'dev') {
