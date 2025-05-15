@@ -14,7 +14,7 @@ def agentlb(lb) {
                 docker rm -f sqliteweb || true
                 docker rmi -f fimg || true
                 docker rmi -f bimg || true
-                docker-compose up --build webapp
+                docker-compose up -d --build webapp
                 docker logout
             '''
             }       
