@@ -3,7 +3,7 @@ def agentlb(lb) {
         try {
             cleanWs()
             checkout scm
-            ws('${workspace}/${env.BRANCH_NAME}/${env.BUILD_NAME}') {
+            ws('${wkd}') {
             sh '''
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
@@ -32,6 +32,7 @@ pipeline {
     }
     environment {
         DH = credentials('dh-credentials')
+        wkd = './lab11'
     }
     stages {
         stage('build and de[loy') {
