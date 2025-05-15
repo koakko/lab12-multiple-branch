@@ -33,6 +33,7 @@ pipeline {
     stages {
         stage('build and deploy') {
             steps {
+                script {
                 if (env.BRANCH_NAME == 'dev') {
                     agentlb('dev')
                 } else if (env.BRANCH_NAME == 'staging') {
@@ -41,6 +42,7 @@ pipeline {
                     agentlb('ps')
                 } else
                 sh 'echo "There is nothing to work ${lb} branch."'
+            }
             }
         }
     }
