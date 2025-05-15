@@ -3,7 +3,7 @@ def agentlb(lb) {
         try {
             cleanWs()
             checkout scm
-            ws('${HOME}') {
+            ws('${workspace}/${env.BRANCH_NAME}/${env.BUILD_NAME}') {
             sh '''
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
@@ -14,12 +14,12 @@ def agentlb(lb) {
                 docker rm -f sqliteweb || true
                 docker rmi -f fimg || true
                 docker rmi -f bimg || true
-                docker-compose up -d --build webapp
+                docker-compose up --no-cache --build webapp
                 docker logout
             '''
             }       
         } catch (Exception e) {
-            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}!'
+            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}'
             throw e
         }
     }
@@ -27,25 +27,20 @@ def agentlb(lb) {
 
 pipeline {
     agent none
-    triggers {
-        githubPush()
-    }
     environment {
         DH = credentials('dh-credentials')
     }
     stages {
         stage('build and deploy') {
             steps {
-                script {
                 if (env.BRANCH_NAME == 'dev') {
                     agentlb('dev')
-                } else if (env.BRANCH_NAME == 'staging') {
+                } else if {
                     agentlb('staging')
-                } else if (env.BRANCH_NAME == 'ps') {
+                } else if {
                     agentlb('ps')
                 } else
                 sh 'echo "There is nothing to work ${lb} branch."'
-            }
             }
         }
     }
