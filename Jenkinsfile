@@ -19,7 +19,7 @@ def agentlb(lb) {
             '''
             }       
         } catch (Exception e) {
-            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}'
+            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}!'
             throw e
         }
     }
