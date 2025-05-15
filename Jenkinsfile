@@ -35,9 +35,9 @@ pipeline {
             steps {
                 if (env.BRANCH_NAME == 'dev') {
                     agentlb('dev')
-                } else if {
+                } else if (env.BRANCH_NAME == 'staging') {
                     agentlb('staging')
-                } else if {
+                } else if (env.BRANCH_NAME == 'ps') {
                     agentlb('ps')
                 } else
                 sh 'echo "There is nothing to work ${lb} branch."'
