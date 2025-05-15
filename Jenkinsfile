@@ -1,5 +1,5 @@
-def agentlb('lb') {
-    node('lb') {
+def agentlb(lb) {
+    node(lb) {
         try {
             cleanWs()
             checkout scm
