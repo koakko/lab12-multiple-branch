@@ -22,7 +22,7 @@ def agentlb(lb) {
             throw e
         }
     }
-}
+
 
 pipeline {
     agent none
