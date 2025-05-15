@@ -3,7 +3,7 @@ def agentlb(lb) {
         try {
             cleanWs()
             checkout scm
-            ws('${env.HOME}/') {
+            ws('${HOME}') {
             sh '''
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
