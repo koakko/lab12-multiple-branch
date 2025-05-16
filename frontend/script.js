@@ -4,7 +4,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
     const email = document.getElementById('email').value;
     const industry = document.getElementById('industry').value;
 
-    const response = await fetch('http://cbend:5000/register', {
+    const response = await fetch('http://13.214.192.60:5000/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ name, email, industry })
