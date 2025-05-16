@@ -15,13 +15,13 @@ def agentlb(lb) {
                 docker rmi -f bimg || true
                 docker-compose up -d --build webapp
                 docker logout
-            '''
-            }       
+            '''     
         } catch (Exception e) {
             echo 'Your build and deploy stage are fail on ${lb}: ${e.message}'
             throw e
         }
     }
+}
 
 
 pipeline {
