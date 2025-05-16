@@ -26,9 +26,6 @@ def agentlb(lb) {
 
 pipeline {
     agent none
-    triggers {
-        githubPush()
-    }
     environment {
         DH = credentials('dh-credentials')
     }
