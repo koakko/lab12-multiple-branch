@@ -2,9 +2,8 @@ def agentlb(lb) {
     node(lb) {
         try {
             cleanWs()
-            checkout GitSCM
+            checkout scm
             sh '''
-                cd ${workspace}
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
                 docker stop cbend || true
