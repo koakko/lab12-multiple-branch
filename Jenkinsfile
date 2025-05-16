@@ -4,6 +4,7 @@ def agentlb(lb) {
             cleanWs()
             checkout GitSCM
             sh '''
+                cd ${workspace}
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
                 docker stop cbend || true
@@ -37,11 +38,11 @@ pipeline {
             steps {
                 script {
                 if (env.BRANCH_NAME == 'dev') {
-                    agentlb('dev')
+                    agentlb('dev-agent')
                 } else if (env.BRANCH_NAME == 'staging') {
-                    agentlb('staging')
+                    agentlb('staging-agent')
                 } else if (env.BRANCH_NAME == 'ps') {
-                    agentlb('ps')
+                    agentlb('ps-agent')
                 } else
                 sh 'echo "There is nothing to work ${lb} branch."'
             }
