@@ -2,9 +2,9 @@ def agentlb(lb) {
     node(lb) {
         try {
             cleanWs()
-            checkout scm
-            ws('${env.HOME}/') {
+            checkout GitSCM
             sh '''
+                cd ${workspace}
                 docker login -u $DH_USR -p $DH_PSW
                 docker stop cfend || true
                 docker stop cbend || true
@@ -19,11 +19,11 @@ def agentlb(lb) {
             '''
             }       
         } catch (Exception e) {
-            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}!'
+            echo 'Your build and deploy stage are fail on ${lb}: ${e.message}'
             throw e
         }
     }
-}
+
 
 pipeline {
     agent none
@@ -38,11 +38,11 @@ pipeline {
             steps {
                 script {
                 if (env.BRANCH_NAME == 'dev') {
-                    agentlb('dev')
+                    agentlb('dev-agent')
                 } else if (env.BRANCH_NAME == 'staging') {
-                    agentlb('staging')
+                    agentlb('staging-agent')
                 } else if (env.BRANCH_NAME == 'ps') {
-                    agentlb('ps')
+                    agentlb('ps-agent')
                 } else
                 sh 'echo "There is nothing to work ${lb} branch."'
             }
